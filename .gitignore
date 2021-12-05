@@ -5,3 +5,5 @@
 /.vs
 /PriceCalculator/bin
 /PriceCalculator/obj
+/PriceCalculator.Tests/obj
+/PriceCalculator.Tests/bin
