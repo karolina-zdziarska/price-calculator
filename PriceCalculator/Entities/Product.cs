@@ -16,7 +16,7 @@ namespace PriceCalculator.Entities
         }
         public override string ToString()
         {
-            return $"Name: {Name} | Cost: £{Cost:#.00}";
+            return $"Name: {Name} | Cost: £{Cost:0.00}";
         }
     }
 }

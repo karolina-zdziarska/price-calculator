@@ -37,12 +37,21 @@ namespace PriceCalculator.Entities
 
         public string ListProducts()
         {
-            throw new NotImplementedException();
+            if (!Items.Any())
+            {
+                return "Your basket is empty.";
+            }
+            return string.Join("\r\n", Items.Select(i => $"{i.Product.ToString()} | Quantity: {i.Quantity}"));
         }
 
         public decimal CalculateTotalPrice()
         {
             return Items.Sum(i => i.Product.Cost * i.Quantity);
+        }
+
+        public void ClearBasket()
+        {
+            Items = new List<BasketEntry>();
         }
     }
 }
