@@ -32,7 +32,11 @@ namespace PriceCalculator.Entities
 
         public void RemoveProduct(Product product)
         {
-            throw new NotImplementedException();
+            var entryToRemove = Items.FirstOrDefault(i => i.Product == product);
+            if(entryToRemove != null)
+            {
+                Items.Remove(entryToRemove);
+            }
         }
 
         public string ListProducts()

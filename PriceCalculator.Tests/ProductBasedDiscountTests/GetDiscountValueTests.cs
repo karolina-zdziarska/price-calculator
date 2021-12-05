@@ -14,7 +14,7 @@ namespace PriceCalculator.Tests.ProductBasedDiscountTests
         private readonly Product bread = new Product("Bread", 1);
 
         private readonly ProductBasedDiscount twoButterBreadHalfOff = new ProductBasedDiscount("Butter", 2, "Bread", 50);
-        private readonly ProductBasedDiscount threeMilkFourthMilkFree = new ProductBasedDiscount("Milk", 3, "Milk", 100);
+        private readonly ProductBasedDiscount threeMilkFourthMilkFree = new ProductBasedDiscount("Milk", 4, "Milk", 100);
 
         [Fact]
         public void GetDiscountValue_DiscountDoesNotApply_ShouldReturnZero()
