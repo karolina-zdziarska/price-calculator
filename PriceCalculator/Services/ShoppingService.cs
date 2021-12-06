@@ -7,13 +7,13 @@ using System.Text;
 
 namespace PriceCalculator.Services
 {
-    public class BasketService : IBasketService
+    public class ShoppingService : IShoppingService
     {
         private readonly List<IDiscount> _discounts;
         private readonly List<Product> _availableProducts;
         private readonly Basket _basket;
 
-        public BasketService(List<IDiscount> discounts, List<Product> availableProducts, Basket basket)
+        public ShoppingService(List<IDiscount> discounts, List<Product> availableProducts, Basket basket)
         {
             _discounts = discounts;
             _availableProducts = availableProducts;
@@ -23,6 +23,11 @@ namespace PriceCalculator.Services
         public void AddProduct(Product product, int quantity)
         {
             _basket.AddProduct(product, quantity);
+        }
+
+        public void RemoveProduct(Product product)
+        {
+            _basket.RemoveProduct(product);
         }
 
         public decimal CalculateBasketTotal()

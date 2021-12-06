@@ -13,9 +13,9 @@ namespace PriceCalculator.Tests.BasketServiceTests
         public void CalculateBasketTotal_BasketHasNoItems_ShouldReturnZero()
         {
             var basket = new Basket();
-            var basketService = new BasketService(TestDataProvider.Discounts, TestDataProvider.AvailableProducts, basket);
+            var shoppingService = new ShoppingService(TestDataProvider.Discounts, TestDataProvider.AvailableProducts, basket);
 
-            var basketTotal = basketService.CalculateBasketTotal();
+            var basketTotal = shoppingService.CalculateBasketTotal();
             Assert.Equal(0, basketTotal);
         }
 
@@ -38,9 +38,9 @@ namespace PriceCalculator.Tests.BasketServiceTests
                 Product = TestDataProvider.Butter,
                 Quantity = 1
             });
-            var basketService = new BasketService(TestDataProvider.Discounts, TestDataProvider.AvailableProducts, basket);
+            var shoppingService = new ShoppingService(TestDataProvider.Discounts, TestDataProvider.AvailableProducts, basket);
 
-            var basketTotal = basketService.CalculateBasketTotal();
+            var basketTotal = shoppingService.CalculateBasketTotal();
             Assert.Equal(2.95m, basketTotal);
         }
 
@@ -58,9 +58,9 @@ namespace PriceCalculator.Tests.BasketServiceTests
                 Product = TestDataProvider.Butter,
                 Quantity = 2
             });
-            var basketService = new BasketService(TestDataProvider.Discounts, TestDataProvider.AvailableProducts, basket);
+            var shoppingService = new ShoppingService(TestDataProvider.Discounts, TestDataProvider.AvailableProducts, basket);
 
-            var basketTotal = basketService.CalculateBasketTotal();
+            var basketTotal = shoppingService.CalculateBasketTotal();
             Assert.Equal(3.1m, basketTotal);
         }
 
@@ -74,9 +74,9 @@ namespace PriceCalculator.Tests.BasketServiceTests
                 Product = TestDataProvider.Milk,
                 Quantity = 4
             });
-            var basketService = new BasketService(TestDataProvider.Discounts, TestDataProvider.AvailableProducts, basket);
+            var shoppingService = new ShoppingService(TestDataProvider.Discounts, TestDataProvider.AvailableProducts, basket);
 
-            var basketTotal = basketService.CalculateBasketTotal();
+            var basketTotal = shoppingService.CalculateBasketTotal();
             Assert.Equal(3.45m, basketTotal);
         }
 
@@ -99,9 +99,9 @@ namespace PriceCalculator.Tests.BasketServiceTests
                 Product = TestDataProvider.Butter,
                 Quantity = 2
             });
-            var basketService = new BasketService(TestDataProvider.Discounts, TestDataProvider.AvailableProducts, basket);
+            var shoppingService = new ShoppingService(TestDataProvider.Discounts, TestDataProvider.AvailableProducts, basket);
 
-            var basketTotal = basketService.CalculateBasketTotal();
+            var basketTotal = shoppingService.CalculateBasketTotal();
             Assert.Equal(9, basketTotal);
         }
     }

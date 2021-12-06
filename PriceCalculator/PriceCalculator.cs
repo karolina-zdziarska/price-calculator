@@ -22,7 +22,7 @@ namespace PriceCalculator
             new ProductBasedDiscount("Milk", 4, "Milk", 100) { Description = "Buy 3 Milk and get the 4th milk for free"}
         };
 
-        private static readonly IBasketService basketService = new BasketService(discounts, availableProducts, new Basket());
+        private static readonly IShoppingService basketService = new ShoppingService(discounts, availableProducts, new Basket());
 
 
         private static Dictionary<string, Action> commands = new Dictionary<string, Action>(StringComparer.InvariantCultureIgnoreCase)
