@@ -20,15 +20,9 @@ namespace PriceCalculator.Services
             _basket = basket;
         }
 
-        public bool AddProductByName(string name, int quantity)
+        public void AddProduct(Product product, int quantity)
         {
-            var productToAdd = _availableProducts.FirstOrDefault(p => string.Equals(p.Name, name, StringComparison.OrdinalIgnoreCase));
-            if(productToAdd == null)
-            {
-                return false;
-            }
-            _basket.AddProduct(productToAdd, quantity);
-            return true;
+            _basket.AddProduct(product, quantity);
         }
 
         public decimal CalculateBasketTotal()
@@ -44,6 +38,11 @@ namespace PriceCalculator.Services
         public void ClearBasket()
         {
             _basket.ClearBasket();
+        }
+
+        public Product GetProductByName(string name)
+        {
+            return _availableProducts.FirstOrDefault(p => string.Equals(p.Name, name, StringComparison.OrdinalIgnoreCase));
         }
 
         public string ListAvailableProducts()

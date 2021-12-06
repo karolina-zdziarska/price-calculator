@@ -29,7 +29,11 @@ namespace PriceCalculator
         {
             { "help", ListCommands },
             { "exit", Exit },
-            { "products", ListProducts}
+            { "products", ListProducts},
+            { "total",  BasketTotal},
+            { "basket",  BasketProducts},
+            { "add", AddProduct },
+            { "clear", ClearBasket }
         };
 
         public static void ParseCommand(string command)
@@ -62,5 +66,49 @@ namespace PriceCalculator
             Console.WriteLine(basketService.ListAvailableProducts());
         }
         
+        private static void BasketTotal()
+        {
+            Console.WriteLine($"Your basket total is: {basketService.CalculateBasketTotal():0.00}");
+        }
+
+        private static void BasketProducts()
+        {
+            Console.WriteLine(basketService.ListBasketProducts());
+        }
+
+        private static void AddProduct()
+        {
+            while (true)
+            {
+                Console.WriteLine("You are adding products. Type a product name you want to add. Type CANCEL to return to main menu.");
+                var userInput = Console.ReadLine();
+                if (string.Equals(userInput, "cancel", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    Console.WriteLine("You are no longer adding products.");
+                    return;
+                }
+                var product = basketService.GetProductByName(userInput);
+                if(product == null)
+                {
+                    Console.WriteLine($"Unrecognized product: {userInput}. Please try again.");
+                    continue;
+                }
+                Console.WriteLine("Enter desired quantity:");
+                var quantityUserInput = Console.ReadLine();
+                if(!int.TryParse(quantityUserInput, out int quantity))
+                {
+                    Console.WriteLine($"Invalid numeric value: {quantityUserInput}");
+                    continue;
+                }
+                basketService.AddProduct(product, quantity);
+                Console.WriteLine($"You have added {quantity} {product.Name}.");
+            }
+        }
+
+        private static void ClearBasket()
+        {
+            basketService.ClearBasket();
+            Console.WriteLine("You have cleared your basket.");
+        }
     }
 }

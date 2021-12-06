@@ -17,6 +17,7 @@ namespace PriceCalculator
                 Console.WriteLine();
                 Console.WriteLine("You are currently in the main menu. Awaiting your input...");
                 var userInput = Console.ReadLine();
+                Console.WriteLine();
                 PriceCalculator.ParseCommand(userInput);
             }
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PriceCalculator.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +7,8 @@ namespace PriceCalculator.Services
 {
     public interface IBasketService
     {
-        bool AddProductByName(string name, int quantity);
+        void AddProduct(Product product, int quantity);
+        Product GetProductByName(string name);
         string ListBasketProducts();
         string ListAvailableProducts();
         decimal CalculateBasketTotal();
