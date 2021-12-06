@@ -33,6 +33,7 @@ namespace PriceCalculator
             { "total",  BasketTotal},
             { "basket",  BasketProducts},
             { "add", AddProduct },
+            { "remove", RemoveProduct },
             { "clear", ClearBasket },
             { "discounts",  ListDiscounts}
         };
@@ -66,7 +67,7 @@ namespace PriceCalculator
             Console.WriteLine("Below are the avaliable products. Type ADD to add one to the basket.");
             Console.WriteLine(basketService.ListAvailableProducts());
         }
-        
+
         private static void BasketTotal()
         {
             Console.WriteLine($"Your basket total is: {basketService.CalculateBasketTotal():0.00}");
@@ -89,14 +90,14 @@ namespace PriceCalculator
                     return;
                 }
                 var product = basketService.GetProductByName(userInput);
-                if(product == null)
+                if (product == null)
                 {
                     Console.WriteLine($"Unrecognized product: {userInput}. Please try again.");
                     continue;
                 }
                 Console.WriteLine("Enter desired quantity:");
                 var quantityUserInput = Console.ReadLine();
-                if(!int.TryParse(quantityUserInput, out int quantity))
+                if (!int.TryParse(quantityUserInput, out int quantity))
                 {
                     Console.WriteLine($"Invalid numeric value: {quantityUserInput}");
                     continue;
@@ -116,6 +117,19 @@ namespace PriceCalculator
         {
             Console.WriteLine("Below are available discounts:");
             Console.WriteLine(string.Join("\r\n", discounts.Select(d => d.Description)));
+        }
+
+        private static void RemoveProduct()
+        {
+            Console.WriteLine("Type a product name you want to remove from your basket.");
+            var userInput = Console.ReadLine();
+            var product = basketService.GetProductByName(userInput);
+            if (product == null)
+            {
+                Console.WriteLine($"Unrecognized product: {userInput}.");
+            }
+            basketService.RemoveProduct(product);
+            Console.WriteLine($"You have removed all entries of {product.Name} from your basket.");
         }
     }
 }
