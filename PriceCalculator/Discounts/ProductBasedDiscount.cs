@@ -34,12 +34,18 @@ namespace PriceCalculator.Discounts
                 return 0;
             }
             var productToDiscount = discountEntry.Product;
-            var discountMultiplier = triggerEntry.Quantity / triggerAmount;
-            if(discountMultiplier > discountEntry.Quantity)
-            {
-                discountMultiplier = discountEntry.Quantity;
-            }
+            var discountMultiplier = CalculateDiscountMultiplier(triggerEntry.Quantity, triggerAmount, discountEntry.Quantity);
             return -(productToDiscount.Cost * discountPercentage / 100) * discountMultiplier;
+        }
+
+        public static int CalculateDiscountMultiplier(int triggerProductsQuantity, int triggerAmount, int discountProductQuantity)
+        {
+            int discountMultiplier = triggerProductsQuantity / triggerAmount;
+            if (discountMultiplier > discountProductQuantity)
+            {
+                return discountProductQuantity;
+            }
+            return discountMultiplier;
         }
     }
 }
