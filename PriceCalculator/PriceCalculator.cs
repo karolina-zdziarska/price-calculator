@@ -18,8 +18,8 @@ namespace PriceCalculator
         };
         private static List<IDiscount> discounts = new List<IDiscount>()
         {
-            new ProductBasedDiscount("Butter", 2, "Bread", 50),
-            new ProductBasedDiscount("Milk", 4, "Milk", 100)
+            new ProductBasedDiscount("Butter", 2, "Bread", 50) { Description = "Buy 2 Butter and get a Bread at 50% off" },
+            new ProductBasedDiscount("Milk", 4, "Milk", 100) { Description = "Buy 3 Milk and get the 4th milk for free"}
         };
 
         private static readonly IBasketService basketService = new BasketService(discounts, availableProducts, new Basket());
@@ -33,7 +33,8 @@ namespace PriceCalculator
             { "total",  BasketTotal},
             { "basket",  BasketProducts},
             { "add", AddProduct },
-            { "clear", ClearBasket }
+            { "clear", ClearBasket },
+            { "discounts",  ListDiscounts}
         };
 
         public static void ParseCommand(string command)
@@ -109,6 +110,12 @@ namespace PriceCalculator
         {
             basketService.ClearBasket();
             Console.WriteLine("You have cleared your basket.");
+        }
+
+        private static void ListDiscounts()
+        {
+            Console.WriteLine("Below are available discounts:");
+            Console.WriteLine(string.Join("\r\n", discounts.Select(d => d.Description)));
         }
     }
 }

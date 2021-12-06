@@ -7,6 +7,7 @@ namespace PriceCalculator.Discounts
 {
     public interface IDiscount
     {
+        string Description { get; set; }
         decimal GetDiscountValue(IList<BasketEntry> basketEntries);
     }
 }

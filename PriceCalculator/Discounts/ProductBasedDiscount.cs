@@ -8,11 +8,12 @@ namespace PriceCalculator.Discounts
 {
     public class ProductBasedDiscount : IDiscount
     {
+        public string Description { get; set; }
+
         private string triggerName;
         private int triggerAmount;
         private string discountedProductName;
         private int discountPercentage;
-
         public ProductBasedDiscount(string triggerName, int triggerAmount, string discountedProductName, int discountPercentage)
         {
             this.triggerName = triggerName;
