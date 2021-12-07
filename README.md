@@ -33,7 +33,7 @@ For this task, I included only one implementation of this interface - ProductBas
 
 As per requirements, these kinds of discounts can be applied multiple times, therefore a multiplier needs to be calculated (i.e. if someone buys 8 milk, they need to get 2 milks for free). 
 
-It would be possible to add other implementations of this interface, such as order based discount, which would subtract the certain percentage of basket total, regardless of type of products (e.g. as a part of a customer royalty scheme), or shipping discount, which would offer free shipping to the customers that spend more than X amount in their order.
+It would be possible to add other implementations of this interface, such as order based discount, which would subtract the certain percentage of basket total, regardless of type of products (e.g. as a part of a customer loyalty scheme), or shipping discount, which would offer free shipping to the customers that spend more than X amount in their order.
 
 The discounts could be also configurable in other ways: for example, it would be possible to include a boolean value in the interface, which would allow to specify whether the discount can be stacked with other discounts.
 
