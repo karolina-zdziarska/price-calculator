@@ -4,14 +4,14 @@ This is a solution for the price calculation exercise. It's a simple .NET Core c
 The application has a very basic command line interface to allow for manual testing.
 
 Below is the list of allowed commands:
-HELP - lists all commands in a console
-EXIT - exits the app
-PRODUCTS - lists all the products that the user can add to the basket
-TOTAL - calculates the basket total (current items minus applicable discounts)
-ADD - add a product to the basket. The user can then provide a product name and quantity.
-REMOVE - remove all entries of a specific product from the basket.
-CLEAR - clears all items from the basket
-DISCOUNTS - lists all available discounts
+- HELP - lists all commands in a console
+- EXIT - exits the app
+- PRODUCTS - lists all the products that the user can add to the basket
+- TOTAL - calculates the basket total (current items minus applicable discounts)
+- ADD - add a product to the basket. The user can then provide a product name and quantity.
+- REMOVE - remove all entries of a specific product from the basket.
+- CLEAR - clears all items from the basket
+- DISCOUNTS - lists all available discounts
 
 # Design decisions and justifications
 
@@ -20,7 +20,7 @@ To follow the single responsibility principle, I decided to extract the Basket c
 
 The Product class represents a product that can be added to the basket. I decided to encapsulate the Name and Cost properties and give them private setters, so that they cannot be modified after the object is initialized. I also included a ToString override to help with printing the basket contents out to the console.
 
-The BasketEntry is a class that contains information about the product added to the basket. I decided that it's better to store a Product along with quantity, rather than having multiple instances of the same product, because it drastically reduces the size of the Items list (for example, if someone adds a 100 milk, it would be stored in one entry). It also simulates the relationship that Basket and Product would have in a relational database; there could be a table that stores basket ID, product ID and quantity.
+The BasketEntry is a class that contains information about the product added to the basket. I decided that it's better to store a Product along with quantity, rather than having multiple instances of the same product, because it drastically reduces the size of the Items list (for example, if someone adds a 100 milk, it would still be stored in one entry). It also simulates the relationship that Basket and Product would have in a relational database; there could be a table that stores basket ID, product ID and quantity.
 
 ## Discount logic: IDiscount and ProductBasedDiscount
 My main goal when programming the discount logic was to ensure that the discount feature is extendable. This means that new offers can be added, which are triggered by different conditions and might have different calculation logic, but ultimately do the same thing: subtract from the basket total. Real life shops add to and modify their offers very often, which is why I decided it's important to start the design with that goal in mind. I included the IDiscount interface, which contains the GetDiscountValue method, returning a calculated discount value based on the products and their quantity. Each discount also has an optional description. 
