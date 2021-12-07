@@ -1,9 +1,6 @@
 ﻿using PriceCalculator.Entities;
 using PriceCalculator.Services;
 using PriceCalculator.Tests.BasketServiceTests;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace PriceCalculator.Tests.ShoppingServiceTests

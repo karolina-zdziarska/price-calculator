@@ -1,8 +1,6 @@
 ﻿using PriceCalculator.Discounts;
 using PriceCalculator.Entities;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PriceCalculator.Tests.BasketServiceTests
 {

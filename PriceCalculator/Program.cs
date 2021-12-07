@@ -1,8 +1,4 @@
-﻿using PriceCalculator.Discounts;
-using PriceCalculator.Entities;
-using PriceCalculator.Services;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace PriceCalculator
 {

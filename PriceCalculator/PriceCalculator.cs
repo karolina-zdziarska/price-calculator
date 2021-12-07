@@ -4,7 +4,6 @@ using PriceCalculator.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace PriceCalculator
 {
@@ -22,7 +21,7 @@ namespace PriceCalculator
             new ProductBasedDiscount("Milk", 4, "Milk", 100) { Description = "Buy 3 Milk and get the 4th milk for free"}
         };
 
-        private static readonly IShoppingService basketService = new ShoppingService(discounts, availableProducts, new Basket());
+        private static readonly IShoppingService shoppingService = new ShoppingService(discounts, availableProducts, new Basket());
 
 
         private static Dictionary<string, Action> commands = new Dictionary<string, Action>(StringComparer.InvariantCultureIgnoreCase)
@@ -65,17 +64,17 @@ namespace PriceCalculator
         private static void ListProducts()
         {
             Console.WriteLine("Below are the avaliable products. Type ADD to add one to the basket.");
-            Console.WriteLine(basketService.ListAvailableProducts());
+            Console.WriteLine(shoppingService.ListAvailableProducts());
         }
 
         private static void BasketTotal()
         {
-            Console.WriteLine($"Your basket total is: {basketService.CalculateBasketTotal():0.00}");
+            Console.WriteLine($"Your basket total is: {shoppingService.CalculateBasketTotal():0.00}");
         }
 
         private static void BasketProducts()
         {
-            Console.WriteLine(basketService.ListBasketProducts());
+            Console.WriteLine(shoppingService.ListBasketProducts());
         }
 
         private static void AddProduct()
@@ -89,7 +88,7 @@ namespace PriceCalculator
                     Console.WriteLine("You are no longer adding products.");
                     return;
                 }
-                var product = basketService.GetProductByName(userInput);
+                var product = shoppingService.GetProductByName(userInput);
                 if (product == null)
                 {
                     Console.WriteLine($"Unrecognized product: {userInput}. Please try again.");
@@ -102,14 +101,14 @@ namespace PriceCalculator
                     Console.WriteLine($"Invalid numeric value: {quantityUserInput}");
                     continue;
                 }
-                basketService.AddProduct(product, quantity);
+                shoppingService.AddProduct(product, quantity);
                 Console.WriteLine($"You have added {quantity} {product.Name}.");
             }
         }
 
         private static void ClearBasket()
         {
-            basketService.ClearBasket();
+            shoppingService.ClearBasket();
             Console.WriteLine("You have cleared your basket.");
         }
 
@@ -123,12 +122,12 @@ namespace PriceCalculator
         {
             Console.WriteLine("Type a product name you want to remove from your basket.");
             var userInput = Console.ReadLine();
-            var product = basketService.GetProductByName(userInput);
+            var product = shoppingService.GetProductByName(userInput);
             if (product == null)
             {
                 Console.WriteLine($"Unrecognized product: {userInput}.");
             }
-            basketService.RemoveProduct(product);
+            shoppingService.RemoveProduct(product);
             Console.WriteLine($"You have removed all entries of {product.Name} from your basket.");
         }
     }
